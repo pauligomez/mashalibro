@@ -1,0 +1,54 @@
+@page
+@model hello2.Pages_Movies.IndexModel
+
+@{
+    ViewData["Title"] = "Libreria de Masha";
+}
+
+<h1>Libreria</h1>
+
+<p>
+    <a asp-page="Create">Ingresar nuevo libro</a>
+</p>
+<form>
+    <p>
+        Titulo: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie[0].Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie[0].Genero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie[0].Precio)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Movie) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Detalles</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
